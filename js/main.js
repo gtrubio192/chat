@@ -17,11 +17,18 @@ $(document).ready(function() {
 
 
 		$.post(
-			'http://tiny-pizza-server.herokuapp.com/collections/austintime',
+			
+			// 'http://tiny-pizza-server.herokuapp.com/collections/austintime',
+			'https://kate-gabe-chat.herokuapp.com/chats',
 			{
-				message: $('#chat-box').val(),
-				name: name,
-				time: now
+				chat: {
+					message: $('#chat-box').val(),
+					name: name,
+					// created_at: now,
+					like: '',
+					photo: ''
+				}
+			
 			},
 			function(message) {
 				console.log(message);
@@ -35,7 +42,8 @@ $(document).ready(function() {
 	
 	var getMessages = function() {
 		$.get(
-			'http://tiny-pizza-server.herokuapp.com/collections/austintime',
+			// 'http://tiny-pizza-server.herokuapp.com/collections/austintime',
+			'https://kate-gabe-chat.herokuapp.com/chats.json',
 			function(messages) {
 				render(messages);
 			},
@@ -43,27 +51,9 @@ $(document).ready(function() {
 		);
 	};
 
-	var render = function(messages) {
-		var messageRow = _.template('<br><div class="row"><div><strong><%= name %></strong></div><div><%= message %></div><div><%= time %></div></div>');
-		console.log(messages);
-		$('#message-board').html('');
-		for(var i=0; i<messages.length; i++) {
-			if(messages[i].message && messages[i].name && messages[i].time) {
-				$('#message-board').append(messageRow(messages[i]) );
-			}
-		}
-	};
-
-	
-	// var now = timeStamp();
-	// var firstPass = 1;
-
-	setInterval( getMessages, 1000);
-
-
-	function timeStamp() {
+	function timeStamp(dateString) {
 	// Create a date object with the current time
-	  var now = new Date();
+    var now = new Date(dateString);
 	 
 	// Create an array with the current month, day and time
 	  var date = [ now.getMonth() + 1, now.getDate(), now.getFullYear() ];
@@ -90,6 +80,30 @@ $(document).ready(function() {
 	// Return the formatted string
 	  return date.join("/") + " " + time.join(":") + " " + suffix;
 	}
+
+	var render = function(messages) {
+		console.log(messages);
+		var messageRow = _.template('<br><div class="row"><div><strong><%= name %></strong></div><div><%= message %></div><div><%= time_stamp %></div><div><%= like %></div><div><%= photo %></div></div>');
+		// console.log(messages);
+		$('#message-board').html('');
+		for(var i=0; i<messages.length; i++) {
+			// if(messages[i].message && messages[i].name && messages[i].created_at) {
+				$('#message-board').append(messageRow(messages[i]));
+			// }
+			// else{
+				// console.log("Failed");
+			// }
+		}
+	};
+
+	
+	// var now = timeStamp();
+	// var firstPass = 1;
+
+	setInterval( getMessages, 3000);
+
+
+
 });
 
 
