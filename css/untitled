@@ -1,0 +1,35 @@
+<li class="left clearfix">
+    <span class="chat-img pull-left">
+        <img src="http://placehold.it/50/55C1E7/fff&amp;text=U" alt="User Avatar" class="img-circle">
+    </span>
+    <div class="chat-body clearfix">
+        <div class="header">
+            <strong class="primary-font">Jack Sparrow</strong> 
+            <small class="pull-right text-muted">
+                <span class="glyphicon glyphicon-time"></span>12 mins ago
+            </small>
+        </div>
+        <p>
+            Lorem ipsum dolor sit amet
+        </p>
+    </div>
+</li>
+
+
+<li>
+    <div class="chat-body clearfix">
+        <div class="header">
+            <span>
+                <strong><%= name %></strong>
+            </span>
+            <small class="pull-right">
+                    <span class="glyphicon glyphicon-chat pull-right"> <%= like %> </span> Like
+            </small>
+        </div>
+        <p><%= message %></p>
+    </div>
+    <div class="pull-left">
+        <%= time_stamp %>
+    </div>
+</li>
+

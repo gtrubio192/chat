@@ -1,8 +1,8 @@
    
 $(document).ready(function() {
-	var name = prompt("Enter your user name: ");
+	// var name = prompt("Enter your user name: ");
 
-	$('.submit').on('click', onSearchButtonClick);
+	$('#submit').on('click', onSearchButtonClick);
 	//testing call
 	// $('table').on('.entry tr', 'click', onRowClick);
 
@@ -12,18 +12,19 @@ $(document).ready(function() {
 		//$('.submit').val();
 		// $('#results').html($('#search-box').val());
 		// var now = timeStamp();
+
+		// clear text box
 		var now = timeStamp();
 		// var name = prompt("Enter your user name: ");
 
-
 		$.post(
-			
 			// 'http://tiny-pizza-server.herokuapp.com/collections/austintime',
 			'https://kate-gabe-chat.herokuapp.com/chats',
 			{
 				chat: {
 					message: $('#chat-box').val(),
-					name: name,
+					// name: name,
+					name: "CoolDude",
 					// created_at: now,
 					like: '',
 					photo: ''
@@ -37,7 +38,7 @@ $(document).ready(function() {
 			},
 			'json'
 		);
-		$('#chat-box').html('');
+		$('#chat-box').val('');
 	}
 	
 	var getMessages = function() {
@@ -83,12 +84,12 @@ $(document).ready(function() {
 
 	var render = function(messages) {
 		console.log(messages);
-		var messageRow = _.template('<br><div class="row"><div><strong><%= name %></strong></div><div><%= message %></div><div><%= time_stamp %></div><div><%= like %></div><div><%= photo %></div></div>');
+		var messageRow = _.template('<li><div class="chat-body clearfix"><div class="header"><strong class="primary-font"><%= name %></strong><small class="pull-right"><span class="glyphicon glyphicon-heart"> <%= like %> </span></small></div><p><%= message %></p></div><div><%= time_stamp %></div></li>');
 		// console.log(messages);
 		$('#message-board').html('');
 		for(var i=0; i<messages.length; i++) {
 			// if(messages[i].message && messages[i].name && messages[i].created_at) {
-				$('#message-board').append(messageRow(messages[i]));
+				$('.chat').prepend(messageRow(messages[i]));
 			// }
 			// else{
 				// console.log("Failed");
@@ -99,7 +100,7 @@ $(document).ready(function() {
 	
 	// var now = timeStamp();
 	// var firstPass = 1;
-
+	getMessages();
 	setInterval( getMessages, 3000);
 
 
