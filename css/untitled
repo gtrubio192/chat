@@ -19,16 +19,14 @@
 <li>
     <div class="chat-body clearfix">
         <div class="header">
-            <span>
-                <strong><%= name %></strong>
-            </span>
+            <strong><%= name %></strong>
             <small class="pull-right">
-                    <span class="glyphicon glyphicon-chat pull-right"> <%= like %> </span> Like
+                    <span class="glyphicon glyphicon-chat"> <%= like %> </span> Like
             </small>
         </div>
         <p><%= message %></p>
     </div>
-    <div class="pull-left">
+    <div>
         <%= time_stamp %>
     </div>
 </li>

@@ -1,3 +1,11 @@
+.sign-in{
+    position: absolute;
+    margin: 40% 25% 50% 25%;
+}
+#chat-room{
+    position: absolute;
+    margin: 25% 15% 50% 15%;
+}
 #message-board {
  	width: 700px;
 	height: 400px;
